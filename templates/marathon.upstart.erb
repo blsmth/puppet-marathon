@@ -11,11 +11,11 @@ setuid <%= scope.lookupvar('marathon::user') %>
 exec <%= scope.lookupvar('marathon::bin_path') %>/marathon \
 --master <%= scope.lookupvar('marathon::master') %> \
 --zk <%= scope.lookupvar('marathon::zk') %> \
-<% if scope.lookupvar('marathon::authenticate') -%>
+<%- if scope.lookupvar('marathon::authenticate') -%>
     --mesos_authentication_principal <%= scope.lookupvar('marathon::auth_principal') %> \
     --mesos_authentication_secret_file <%= scope.lookupvar('marathon::secret_file') %> \
-    <% if scope.lookupvar('marathon::auth_role') -%>
+    <%- if scope.lookupvar('marathon::auth_role') -%>
         --mesos_role <%= scope.lookupvar('marathon::auth_role') %> \
-    <% end %>
-<% end %>
+    <% end -%>
+<% end -%>
 <%= scope.lookupvar('marathon::extra_options') %>
